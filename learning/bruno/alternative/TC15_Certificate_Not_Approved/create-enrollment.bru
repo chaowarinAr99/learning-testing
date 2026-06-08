@@ -21,13 +21,9 @@ body:json {
   }
 }
 
-script:pre-request {
-  bru.setEnvVar("enrollmentId15", "");
-}
-
 script:post-response {
   const body = res.getBody();
-  bru.setEnvVar("enrollmentId15", body.enrollmentId);
+  bru.setVar("enrollmentId15", body.enrollmentId);
 }
 
 tests {

@@ -8,10 +8,12 @@ import type {
 } from './types.js';
 
 type MongoCollection<T> = {
-  findOne(query: Record<string, unknown>): Promise<T | null>;
+  findOne(
+    query: Record<string, unknown>,
+    options?: { sort?: Record<string, 1 | -1> },
+  ): Promise<T | null>;
   insertOne(document: T): Promise<unknown>;
   updateOne(query: Record<string, unknown>, update: Record<string, unknown>): Promise<unknown>;
-  countDocuments(query: Record<string, unknown>): Promise<number>;
 };
 
 type CourseDocument = {
@@ -75,8 +77,10 @@ export class MongoEnrollmentRepository implements EnrollmentRepository {
   constructor(private readonly collection: MongoCollection<EnrollmentDocument>) {}
 
   private async nextEnrollmentId(): Promise<string> {
-    const count = await this.collection.countDocuments({});
-    return `ENR${String(count + 1).padStart(3, '0')}`;
+    const lastEnrollment = await this.collection.findOne({}, { sort: { id: -1 } });
+    const lastNumber = lastEnrollment?.id?.match(/^ENR(\d{3})$/)?.[1];
+    const nextNumber = Number(lastNumber ?? 0) + 1;
+    return `ENR${String(nextNumber).padStart(3, '0')}`;
   }
 
   async findActiveByEmployeeAndCourse(

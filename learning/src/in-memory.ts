@@ -26,7 +26,13 @@ export class InMemoryEnrollmentRepository implements EnrollmentRepository {
   constructor(private readonly enrollments: Enrollment[] = []) {}
 
   private nextEnrollmentId(): string {
-    const nextNumber = this.enrollments.length + 1;
+    const maxNumber = this.enrollments.reduce((currentMax, enrollment) => {
+      const match = /^ENR(\d{3})$/.exec(enrollment.id);
+      const value = match ? Number(match[1]) : 0;
+      return Math.max(currentMax, value);
+    }, 0);
+
+    const nextNumber = maxNumber + 1;
     return `ENR${String(nextNumber).padStart(3, '0')}`;
   }
 

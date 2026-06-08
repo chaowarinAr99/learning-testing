@@ -20,6 +20,12 @@ body:json {
   }
 }
 
+script:pre-request {
+  if (!bru.getVar("enrollmentId15")) {
+    throw new Error("Missing enrollmentId15. Run Create Enrollment TC15 first.");
+  }
+}
+
 tests {
   test("status code is 409", function() {
     expect(res.getStatus()).to.equal(409);
