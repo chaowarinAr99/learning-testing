@@ -1,6 +1,6 @@
 # Learning: Test Setup Workshop
 
-ชุดไฟล์นี้ไว้ฝึกคิดและจัดโครง `test setup` สำหรับระบบสมัครเรียนและออก Certificate
+ชุดไฟล์นี้ไว้ฝึกคิดและจัดโครง `test setup` สำหรับระบบสมัครเรียนและออก Certificate //
 
 ## วิธีใช้
 1. อ่าน `system-context.md` เพื่อเข้าใจ flow และ business rule
