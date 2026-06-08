@@ -1,0 +1,30 @@
+{
+  "port": 4546,
+  "protocol": "http",
+  "name": "certificate-api-error",
+  "stubs": [
+    {
+      "predicates": [
+        {
+          "equals": {
+            "method": "POST",
+            "path": "/generate-certificate"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 500,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "message": "external certificate api failed"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

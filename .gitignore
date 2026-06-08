@@ -1,0 +1,5 @@
+learning/node_modules/
+learning/dist/
+learning/*.log
+learning/mb*.log
+.DS_Store

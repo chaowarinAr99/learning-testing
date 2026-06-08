@@ -1,0 +1,33 @@
+{
+  "port": 4545,
+  "protocol": "http",
+  "name": "certificate-api",
+  "stubs": [
+    {
+      "predicates": [
+        {
+          "equals": {
+            "method": "POST",
+            "path": "/generate-certificate"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "certificate_id": "CERT003",
+              "certificate_url": "https://certificate.example.com/CERT003.pdf",
+              "status": "issued",
+              "issued_at": "2026-05-15T10:00:00Z"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
