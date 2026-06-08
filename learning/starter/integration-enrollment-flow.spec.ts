@@ -2,7 +2,7 @@ describe('Enrollment flow integration', () => {
   it('should allow re-enrollment after rejected enrollment', async () => {
     // Arrange
     // TODO: seed REJECTED enrollment
-
+    //
     // Act
     // TODO: call createEnrollment
 
